@@ -24,6 +24,7 @@ class MenuSerializer(serializers.ModelSerializer):
             "restaurant": instance.restaurant.name,
             "date": datetime.date.today(),
             "dishes": today_dishes if today_dishes else "No dishes for today",
+            "votes": instance.employees.count()
         }
         return data
 

@@ -22,7 +22,7 @@ def validate_dishes_format(value) -> None:
 
 
 class Menu(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="menus", unique=True)
+    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name="menus")
     date = models.DateField(auto_now_add=True)
     dishes = models.JSONField(validators=[validate_dishes_format])
 
