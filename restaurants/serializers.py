@@ -29,7 +29,7 @@ class MenuSerializer(serializers.ModelSerializer):
         return data
 
     def update(self, instance, validated_data):
-        if "restaurant" in validated_data:
+        if instance.restaurant != validated_data["restaurant"]:
             raise serializers.ValidationError("Changing the restaurant of a menu is not allowed.")
 
         return super().update(instance, validated_data)
