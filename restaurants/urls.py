@@ -8,7 +8,7 @@ router.register(r"restaurants", RestaurantViewSet)
 router.register(r"menus", MenuViewSet)
 
 urlpatterns = [
-    path("menus/<int:pk>/vote/", vote_for_menu)
+    path("menus/<int:pk>/vote/", vote_for_menu, name="vote_for_menu")
 ] + router.urls
 
 app_name = "dishes"
