@@ -24,12 +24,14 @@ class MenuSerializer(serializers.ModelSerializer):
             "restaurant": instance.restaurant.name,
             "date": datetime.date.today(),
             "dishes": today_dishes if today_dishes else "No dishes for today",
-            "votes": instance.employees.count()
+            "votes": instance.employees.count(),
         }
         return data
 
     def update(self, instance, validated_data):
         if instance.restaurant != validated_data["restaurant"]:
-            raise serializers.ValidationError("Changing the restaurant of a menu is not allowed.")
+            raise serializers.ValidationError(
+                "Changing the restaurant of a menu is not allowed."
+            )
 
         return super().update(instance, validated_data)

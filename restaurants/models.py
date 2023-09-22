@@ -10,19 +10,32 @@ class Restaurant(models.Model):
 
 
 def validate_dishes_format(value) -> None:
-    valid_days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    valid_days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ]
     if not isinstance(value, dict):
-        raise ValidationError(f"dishes must be json dict")
+        raise ValidationError("dishes must be json dict")
 
     for day in value.keys():
         if day != day.lower():
             raise ValidationError(f"Please write '{day}' in lower case")
         if day not in valid_days:
-            raise ValidationError(f"'{day}' is not a valid day name. Valid day names are: {', '.join(valid_days)}")
+            raise ValidationError(
+                f"'{day}' is not a valid day name."
+                f" Valid day names are: {', '.join(valid_days)}"
+            )
 
 
 class Menu(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="menus")
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE, related_name="menus"
+    )
     date = models.DateField(auto_now_add=True)
     dishes = models.JSONField(validators=[validate_dishes_format])
 

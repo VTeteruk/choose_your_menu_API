@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "choose_your_menu_API.settings")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", "choose_your_menu_API.settings"
+)
 
 application = get_wsgi_application()

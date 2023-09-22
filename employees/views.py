@@ -13,6 +13,7 @@ class CreateEmployeeView(generics.CreateAPIView):
 
 class EmployeeDetailView(generics.RetrieveUpdateDestroyAPIView):
     """Show information about current user"""
+
     serializer_class = EmployeeSerializer
 
     def get_object(self) -> Employee:
