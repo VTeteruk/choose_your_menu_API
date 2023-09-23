@@ -15,6 +15,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             "last_name",
             "password",
             "is_staff",
+            "position",
             "votes"
         )
         read_only_fields = ("id", "is_staff", "votes")
