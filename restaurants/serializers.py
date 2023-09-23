@@ -50,6 +50,6 @@ class MenuListSerializer(serializers.ModelSerializer):
             "dishes": (
                 today_dishes if today_dishes else "No dishes for today"  # Show only today's menu
             ),
-            "votes": instance.employees.count(),
+            "votes": instance.votes_count,
         }
         return data

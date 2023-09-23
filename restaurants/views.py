@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Count
 from rest_framework import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -18,7 +19,7 @@ class MenuViewSet(ModelViewSet):
     Dishes must be a dict in such format: {'day': 'dish, dish', 'day': 'dish'}
     """
 
-    queryset = Menu.objects.all()
+    queryset = Menu.objects.annotate(votes_count=Count('employees'))
     serializer_class = MenuSerializer
 
     def get_serializer_class(self) -> serializers:
