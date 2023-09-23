@@ -14,6 +14,10 @@ from restaurants.serializers import (
 
 
 class MenuViewSet(ModelViewSet):
+    """Show menu for current day if is in list format or all menu if is in retrieve format
+    Dishes must be a dict in such format: {'day': 'dish, dish', 'day': 'dish'}
+    """
+
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
