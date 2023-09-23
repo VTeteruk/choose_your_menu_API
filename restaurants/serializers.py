@@ -15,17 +15,14 @@ class MenuSerializer(serializers.ModelSerializer):
         model = Menu
         fields = "__all__"
 
-    def to_representation(self, instance):
-        today = datetime.date.today()
-        today_dishes = instance.dishes.get(today.strftime("%A").lower())
-
+    def to_representation(self, instance) -> dict:
         data = {
             "id": instance.id,
             "restaurant": instance.restaurant.name,
-            "date": datetime.date.today(),
-            "dishes": today_dishes if today_dishes else "No dishes for today",
+            "dishes": instance.dishes,
             "votes": instance.employees.count(),
         }
+
         return data
 
     def update(self, instance, validated_data):
@@ -35,3 +32,22 @@ class MenuSerializer(serializers.ModelSerializer):
             )
 
         return super().update(instance, validated_data)
+
+
+class MenuListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Menu
+        fields = "__all__"
+
+    def to_representation(self, instance) -> dict:
+        today = datetime.date.today()
+        today_dishes = instance.dishes.get(today.strftime("%A").lower())
+
+        data = {
+            "id": instance.id,
+            "restaurant": instance.restaurant.name,
+            "date": today,
+            "dishes": today_dishes if today_dishes else "No dishes for today",
+            "votes": instance.employees.count(),
+        }
+        return data

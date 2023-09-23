@@ -1,16 +1,22 @@
 from django.contrib.auth import get_user_model
+from rest_framework import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 import restaurants.models
 from restaurants.models import Menu, Restaurant
-from restaurants.serializers import MenuSerializer, RestaurantSerializer
+from restaurants.serializers import MenuSerializer, RestaurantSerializer, MenuListSerializer
 
 
 class MenuViewSet(ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+
+    def get_serializer_class(self) -> serializers:
+        if self.action == "list":
+            return MenuListSerializer
+        return MenuSerializer
 
 
 class RestaurantViewSet(ModelViewSet):
