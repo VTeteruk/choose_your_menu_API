@@ -19,7 +19,7 @@ class MenuSerializer(serializers.ModelSerializer):
         data = {
             "id": instance.id,
             "restaurant": instance.restaurant.name,
-            "dishes": instance.dishes,
+            "dishes": instance.dishes,  # Show all dishes if it's only one menu
             "votes": instance.employees.count(),
         }
 
@@ -47,7 +47,9 @@ class MenuListSerializer(serializers.ModelSerializer):
             "id": instance.id,
             "restaurant": instance.restaurant.name,
             "date": today,
-            "dishes": today_dishes if today_dishes else "No dishes for today",
+            "dishes": (
+                today_dishes if today_dishes else "No dishes for today"  # Show only today's menu
+            ),
             "votes": instance.employees.count(),
         }
         return data
