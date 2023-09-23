@@ -18,9 +18,9 @@ class RestaurantViewSet(ModelViewSet):
     serializer_class = RestaurantSerializer
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def vote_for_menu(request, pk: int) -> Response:
-    if request.method == "GET":
+    if request.method == "POST":
         try:
             employee = get_user_model().objects.get(id=request.user.id)
             employee.votes = Menu.objects.get(id=pk)
