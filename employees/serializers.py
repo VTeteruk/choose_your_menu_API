@@ -3,6 +3,8 @@ from rest_framework import serializers
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    votes = serializers.StringRelatedField()
+
     class Meta:
         model = get_user_model()
         fields = (
@@ -13,8 +15,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
             "last_name",
             "password",
             "is_staff",
+            "votes"
         )
-        read_only_fields = ("id", "is_staff")
+        read_only_fields = ("id", "is_staff", "votes")
         extra_kwargs = {"password": {"write_only": True, "min_length": 6}}
 
     def create(self, validated_data):
