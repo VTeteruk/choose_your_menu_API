@@ -36,7 +36,9 @@ def test_create_menu(create_authenticated_client, create_restaurant) -> None:
 @pytest.mark.django_db
 def test_update_menu(create_authenticated_client, create_restaurant) -> None:
     # Create a menu
-    menu = Menu.objects.create(restaurant=create_restaurant, dishes={"monday": "Test Dish"})
+    menu = Menu.objects.create(
+        restaurant=create_restaurant, dishes={"monday": "Test Dish"}
+    )
 
     client = create_authenticated_client
     url = reverse("dishes:menu-detail", args=[menu.id])
@@ -53,7 +55,9 @@ def test_update_menu(create_authenticated_client, create_restaurant) -> None:
 
 @pytest.mark.django_db
 def test_retrieve_menu(create_authenticated_client, create_restaurant) -> None:
-    menu = Menu.objects.create(restaurant=create_restaurant, dishes={"monday": "Test Dish"})
+    menu = Menu.objects.create(
+        restaurant=create_restaurant, dishes={"monday": "Test Dish"}
+    )
 
     client = create_authenticated_client
     url = reverse("dishes:menu-detail", args=[menu.id])
@@ -65,7 +69,9 @@ def test_retrieve_menu(create_authenticated_client, create_restaurant) -> None:
 
 @pytest.mark.django_db
 def test_delete_menu(create_authenticated_client, create_restaurant) -> None:
-    menu = Menu.objects.create(restaurant=create_restaurant, dishes={"monday": "Test Dish"})
+    menu = Menu.objects.create(
+        restaurant=create_restaurant, dishes={"monday": "Test Dish"}
+    )
 
     client = create_authenticated_client
     url = reverse("dishes:menu-detail", args=[menu.id])

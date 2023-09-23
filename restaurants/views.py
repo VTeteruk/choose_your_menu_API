@@ -6,7 +6,11 @@ from rest_framework.viewsets import ModelViewSet
 
 import restaurants.models
 from restaurants.models import Menu, Restaurant
-from restaurants.serializers import MenuSerializer, RestaurantSerializer, MenuListSerializer
+from restaurants.serializers import (
+    MenuSerializer,
+    RestaurantSerializer,
+    MenuListSerializer,
+)
 
 
 class MenuViewSet(ModelViewSet):

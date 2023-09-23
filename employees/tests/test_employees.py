@@ -60,7 +60,9 @@ def test_employee_serializer() -> None:
 @pytest.mark.django_db
 def test_vote_for_menu() -> None:
     restaurant = Restaurant.objects.create(name="Test Restaurant")
-    menu = Menu.objects.create(restaurant=restaurant, dishes={"monday": "Test Dish"})
+    menu = Menu.objects.create(
+        restaurant=restaurant, dishes={"monday": "Test Dish"}
+    )
 
     user = create_user()
 
@@ -80,8 +82,12 @@ def test_vote_for_menu() -> None:
 def test_vote_for_menu_for_two_menus() -> None:
     restaurant1 = Restaurant.objects.create(name="Test Restaurant 1")
     restaurant2 = Restaurant.objects.create(name="Test Restaurant 2")
-    menu1 = Menu.objects.create(restaurant=restaurant1, dishes={"monday": "Test Dish"})
-    menu2 = Menu.objects.create(restaurant=restaurant2, dishes={"friday": "Test Dish"})
+    menu1 = Menu.objects.create(
+        restaurant=restaurant1, dishes={"monday": "Test Dish"}
+    )
+    menu2 = Menu.objects.create(
+        restaurant=restaurant2, dishes={"friday": "Test Dish"}
+    )
 
     user = create_user()
 

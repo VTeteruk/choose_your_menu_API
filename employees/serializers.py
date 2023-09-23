@@ -16,7 +16,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             "password",
             "is_staff",
             "position",
-            "votes"
+            "votes",
         )
         read_only_fields = ("id", "is_staff", "votes")
         extra_kwargs = {"password": {"write_only": True, "min_length": 6}}
